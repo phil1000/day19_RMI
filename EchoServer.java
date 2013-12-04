@@ -1,5 +1,7 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.*;
+import java.text.*;
 
 /**
  * an implementation of the echo service.
@@ -15,5 +17,45 @@ public class EchoServer extends UnicastRemoteObject implements EchoService {
 	public String echo(String s) {
 			System.out.println("received and about to return the string " + s); // just to show a connection has been made
 			return s;
+	}
+	
+	@Override
+	public String dateTime() {
+			
+			System.out.println("received a request for the current time "); // just to show a connection has been made
+			// return a date formatted like - Wed 2013.12.04 at 02:53:31 PM GMT
+			Date rightNow = new Date( );
+			SimpleDateFormat formattedDateTime = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+			return formattedDateTime.format(rightNow);
+	}
+	
+	@Override
+	public int calculator(int x, int y, CalculationTypes c) {
+			int result=0;
+			String resultString="";
+			
+			switch (c) {
+				case ADD:
+					resultString="add ";
+					result=x+y;
+					break;
+				case SUBTRACT:
+					resultString="subtract ";
+					result=x-y;
+					break;
+				case MULTIPLY:
+					resultString="multiply ";
+					result=x*y;
+					break;
+				case DIVIDE:
+					resultString="divide ";
+					result=x/y;
+					break;
+				default:
+					resultString="Invalid calculation type received ";
+					break;
+			}
+			System.out.println("received a request to " + resultString + x + y); // just to show a connection has been made
+			return result;
 	}
 }

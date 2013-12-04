@@ -22,6 +22,11 @@ public class EchoServerLauncher {
 			String registryHost = "//localhost/"; // local host always refers to this 'local' machine
 			String serviceName = "echo";
 			Naming.rebind(registryHost+serviceName, myServer);
+			serviceName = "dateTime"; // wanted to have multiple services available
+			Naming.rebind(registryHost+serviceName, myServer); // on the one server 
+			serviceName = "calculate"; 
+			Naming.rebind(registryHost+serviceName, myServer); 
+			
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		} catch (RemoteException ex) {

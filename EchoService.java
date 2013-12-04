@@ -11,4 +11,6 @@ public interface EchoService extends Remote {
 	 * @return the same string passed as parameter
 	 */
 	 public String echo(String s) throws RemoteException; // do i actually need public?
+	 public String dateTime() throws RemoteException;
+	 public int calculator(int x, int y, CalculationTypes c) throws RemoteException;
 }

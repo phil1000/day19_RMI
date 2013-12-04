@@ -21,6 +21,13 @@ public class EchoServerClient {
 			
 			String receivedEcho = echoService.echo(myString);
 			System.out.println("Message Received was: " + receivedEcho);
+			
+			String currentDateTime = echoService.dateTime();
+			System.out.println("Message Received was: " + currentDateTime);
+			
+			int result = echoService.calculator(2, 3, CalculationTypes.ADD); // testing out use of enums
+			System.out.println("result of calculation was " + result);
+			
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		} catch (RemoteException ex) {

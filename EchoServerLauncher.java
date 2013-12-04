@@ -26,6 +26,8 @@ public class EchoServerLauncher {
 			Naming.rebind(registryHost+serviceName, myServer); // on the one server 
 			serviceName = "calculate"; 
 			Naming.rebind(registryHost+serviceName, myServer); 
+			serviceName = "findFile"; 
+			Naming.rebind(registryHost+serviceName, myServer); 
 			
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();

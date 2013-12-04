@@ -2,6 +2,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import java.text.*;
+import java.io.*;
 
 /**
  * an implementation of the echo service.
@@ -57,5 +58,32 @@ public class EchoServer extends UnicastRemoteObject implements EchoService {
 			}
 			System.out.println("received a request to " + resultString + x + y); // just to show a connection has been made
 			return result;
+	}
+	
+	public String findFile(String fileName) {
+		File catFile = new File("." + File.separator + fileName);
+        BufferedReader in = null; // declare the buffered reader here so it can be accessed throughout the method
+        String output = "";
+		try {
+            in = new BufferedReader(new FileReader(catFile)); // typical to use a FileReader in conjunction with BufferedReader for performance
+			String line;
+			while ((line = in.readLine()) != null) {
+				output=output + line;
+			}        
+			in.close(); // close that file
+		} catch (FileNotFoundException ex) {
+			System.out.println("File " + fileName + " not found");
+		}  catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return output;
 	}
 }

@@ -13,4 +13,5 @@ public interface EchoService extends Remote {
 	 public String echo(String s) throws RemoteException; // do i actually need public?
 	 public String dateTime() throws RemoteException;
 	 public int calculator(int x, int y, CalculationTypes c) throws RemoteException;
+	 public String findFile(String fileName) throws RemoteException;
 }

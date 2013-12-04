@@ -28,6 +28,22 @@ public class EchoServerClient {
 			int result = echoService.calculator(2, 3, CalculationTypes.ADD); // testing out use of enums
 			System.out.println("result of calculation was " + result);
 			
+			String fileName = "testfile.txt";
+			String fileContents = echoService.findFile(fileName);
+			if (fileContents.equals("")) {
+				System.out.println("File:" + fileName + " not found");
+			} else {
+				System.out.println("File: " + fileName + "contains: " + fileContents);
+			}
+			
+			fileName = "dummy.txt";
+			fileContents = echoService.findFile(fileName);
+			if (fileContents.equals("")) {
+				System.out.println("File:" + fileName + " not found");
+			} else {
+				System.out.println("File: " + fileName + "contains: " + fileContents);
+			}
+			
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		} catch (RemoteException ex) {
